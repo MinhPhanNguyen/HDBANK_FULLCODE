@@ -1,14 +1,36 @@
-const express = require('express');
-const app = express();
+import { CONNECT_DB, CLOSE_DB } from '~/config/mongodb'
+import { env } from '~/config/environment'
+import { APIs_V1 } from '~/routes/V1'
+import 'dotenv/config'
 
-const hostname = 'localhost'
-const port = 8020
+const express = require('express')
+const exitHook = require('async-exit-hook');
 
+const START_SERVER = () => {
+    const app = express()
 
-app.get('/', function(req, res) {
-    res.send('<h1>Hello World!</h1><hr>')
-})
+    app.use(express.json())
 
-app.listen(port, hostname, () => {
-    console.log(`http://${ hostname }:${ port }/`)
-  })
+    app.use('/v1', APIs_V1)
+
+    app.listen(env.APP_PORT, env.APP_HOST, () => {
+        console.log(`http://${ env.APP_HOST }:${ env.APP_PORT }/`)
+    })
+
+    exitHook(() => {
+        console.log('Disconnect')
+        CLOSE_DB()
+    });
+}
+
+(async () => {
+    try {
+        await CONNECT_DB()
+        console.log('Connect to db successfully')
+
+        START_SERVER()
+    }catch (error) {
+        console.error('Error connecting to database:', error)
+        process.exit(0)
+    }
+})()
