@@ -1,0 +1,37 @@
+.Banner {
+    width: 100%;
+    height: 20vh;
+    overflow: hidden;
+    position: relative;
+    margin-top: 115px;
+    box-shadow: 0 4px 5px rgba(255, 255, 255, 0.3);
+
+    img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        position: relative;
+        top: -20vh;
+        z-index: 1;
+    }   
+
+    .Container {
+        position: absolute;
+        top: 0;
+        z-index: 1;
+        opacity: 0.7;
+        background-color: var(--bg-footer-color);
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--red-color);
+
+        h1 {
+            opacity: 1;
+            margin-bottom: 1em;
+        }
+    }
+}

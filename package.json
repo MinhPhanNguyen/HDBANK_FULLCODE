@@ -1,40 +1,13 @@
 {
-  "name": "hdbank",
-  "version": "1.0.0",
-  "main": "server.js",
-  "scripts": {
-    "lint": "eslint src --ext js --report-unused-disable-directives --max-warnings 0",
-    "clean": "rm -rf build && mkdir build",
-    "build-babel": "babel ./src -d ./build/src",
-    "build": "npm run clean && npm run build-babel",
-    "production": "npm run build && node ./build/src/server.js",
-    "dev": "nodemon --exec babel-node ./src/server.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "async-exit-hook": "^2.0.1",
-    "body-parser": "^1.20.3",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.21.1",
-    "http-status-codes": "^2.3.0",
-    "joi": "^17.13.3",
-    "mongodb": "^6.11.0",
-    "mongoose": "^8.8.2"
-  },
-  "plugins": [
-    "module-resolver"
-  ],
   "devDependencies": {
-    "@babel/cli": "^7.25.9",
-    "@babel/core": "^7.26.0",
-    "@babel/node": "^7.26.0",
-    "@babel/plugin-transform-runtime": "^7.25.9",
-    "@babel/preset-env": "^7.26.0",
-    "babel-plugin-module-resolver": "^5.0.2",
-    "nodemon": "^3.1.7"
+    "@types/bcryptjs": "^2.4.6",
+    "@types/express": "^5.0.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "concurrently": "^9.1.0",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.2"
   }
 }

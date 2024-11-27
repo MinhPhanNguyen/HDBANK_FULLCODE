@@ -1,0 +1,51 @@
+.CardRegistration {
+    height: 100vh;
+    width: 100%;
+    background-image: url(../images/bg-1.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    .CardContainer {
+        position: relative;
+        z-index: 3;
+        background-color: black;
+        max-width: 65vw;
+        margin: 0 auto;
+
+        .Container {
+            display: flex;
+            align-items: end;
+
+            img {
+                
+            }
+        }
+
+        .btn {
+            button {
+                cursor: pointer;
+                position: absolute;
+                padding: 1em;
+                border: none;   
+                top: 50%;
+                transform: translateY(-50%);
+                border-radius: 100%;
+                color: var(--red-color);
+                background-color: var(--bg-footer-color);
+            }
+
+            .btn_left {
+                left: 0;
+            }
+
+            .btn_right {
+                right: 0;
+            }
+        }
+    }
+
+    .InfoContainer {
+
+    }
+}
