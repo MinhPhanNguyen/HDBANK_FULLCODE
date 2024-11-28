@@ -7,18 +7,14 @@ const registerUser = async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        // Kiểm tra xem email đã tồn tại hay chưa
+        // Check if email already exists
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ message: "Email đã được sử dụng!" });
         }
 
-        // Hash mật khẩu trước khi lưu vào DB
-        const hashedPassword = await bcrypt.hash(password, 10);
-        console.log("Mật khẩu đã mã hóa:", hashedPassword);  // Log mật khẩu đã mã hóa
-
-        // Tạo user mới
-        const newUser = new User({ email, password: hashedPassword });
+        // Create a new user (password will be hashed by the pre('save') middleware)
+        const newUser = new User({ email, password });
         await newUser.save();
 
         res.status(201).json({ message: "Đăng ký thành công!", user: newUser });
@@ -40,7 +36,6 @@ const loginUser = async (req, res) => {
 
         // So sánh mật khẩu đã nhập với mật khẩu trong cơ sở dữ liệu
         const isMatch = await user.matchPassword(password);
-        console.log("Mật khẩu có khớp không:", isMatch);  // Log kết quả so sánh
         if (!isMatch) {
             return res.status(400).json({ message: 'Mật khẩu không đúng!' });
         }

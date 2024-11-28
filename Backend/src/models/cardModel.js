@@ -13,5 +13,5 @@ CardSchema.pre("save", async function (next) {
     this.cvv = await bcrypt.hash(this.cvv, 10);
     next();
 });
-
+// chua lam toi cai nay
 module.exports = mongoose.model("Card", CardSchema);

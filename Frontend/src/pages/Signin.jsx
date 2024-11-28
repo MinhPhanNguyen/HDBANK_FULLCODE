@@ -45,7 +45,7 @@ const Signin = () => {
                             <h2>Xin chào</h2>
                         </div>
 
-                        <div className='Username'>
+                        <div className='Username' data-aos="fade-up">
                             <input
                                 type='email'
                                 placeholder='Email'
@@ -55,7 +55,7 @@ const Signin = () => {
                             />
                         </div>
 
-                        <div className='Password'>
+                        <div className='Password' data-aos="fade-up">
                             <input
                                 type={showPassword ? 'text' : 'password'}
                                 placeholder='Mật khẩu'
@@ -66,15 +66,15 @@ const Signin = () => {
                             <IoEye onClick={() => setShowPassword(!showPassword)} />
                         </div>
 
-                        {error && <p style={{ color: 'red' }}>{error}</p>}
-                        {success && <p style={{ color: 'green' }}>{success}</p>}
+                        {error  && <p data-aos="zoom-in" style={{ color: 'red' }}>{error}</p>}
+                        {success && <p data-aos="zoom-in" style={{ color: 'green' }}>{success}</p>}
 
-                        <button type='submit'>Đăng ký</button>
+                        <ul data-aos="fade-up">
+                            <li><Link to='/'><h3>Đăng nhập ?</h3></Link></li>
+                        </ul>
+
+                        <button data-aos="fade-up" type='submit'>Đăng ký</button>
                     </form>
-
-                    <ul>
-                        <li><Link to='/'><p>Đăng nhập ?</p></Link></li>
-                    </ul>
                 </section>
             </div>
             <Footer />

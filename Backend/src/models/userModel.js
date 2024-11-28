@@ -12,7 +12,14 @@ const UserSchema = new mongoose.Schema(
                 "Email không hợp lệ"
             ],
         },
-        password: { type: String, required: true },
+        password: { 
+            type: String, 
+            required: true, 
+            match: [
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,30}$/,
+                "Password phải từ 8-30 ký tự, bao gồm chữ thường, chữ hoa, số và ký tự đặc biệt"
+            ],
+        },
     },
 );
 
@@ -29,12 +36,8 @@ UserSchema.pre('save', async function (next) {
 });
 
 UserSchema.methods.matchPassword = async function (enteredPassword) {
-    console.log('Mật khẩu nhập vào:', enteredPassword); // Log mật khẩu nhập vào
-    console.log('Mật khẩu trong cơ sở dữ liệu:', this.password); // Log mật khẩu trong cơ sở dữ liệu
     return await bcrypt.compare(enteredPassword, this.password);  // So sánh mật khẩu
 };
-
-
 
 const User = mongoose.model("User", UserSchema);
 

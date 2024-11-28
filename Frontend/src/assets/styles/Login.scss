@@ -10,7 +10,7 @@
 
     .Section_1 {
         max-width: 60vw;
-        height: 85%;   
+        height: 90%;   
         margin: 0 auto;
         display: flex;
         flex-direction: column;
@@ -22,7 +22,8 @@
         }
 
         form {
-            width: 33%;
+            padding: 3em;
+            width: 43%;
 
             .Title {
                 display: flex;
@@ -54,12 +55,13 @@
                     border-radius: 4em;
                     border: none;
                     width: 100%;
-                    padding: 1.2em 2em;
-                    background-color: transparent;
-                    color:white;
+                    padding: 1.4em 2em;
+                    background-color: #e4e4e4;
+                    color:var(--red-color);
                     border: 2px solid var(--red-color);
                     border-top: 0;
                     border-left: 0;
+                    font-weight: 600;
                     font-size: 1.3em;
                     transition: all 0.5s ease-in-out;
                 }
@@ -75,18 +77,18 @@
                 }
 
                 input::placeholder {
-                    color:white;
+                    color:var(--red-color);
                     transition: all 0.5s ease-in-out;
                 }
             }
 
             .Password {
-                margin-top: 3em;
+                margin-top: 4em;
                 position: relative;
 
                 svg {
                     cursor: pointer;
-                    color: white;
+                    color: var(--red-color);
                     font-size: 2.5em;
                     padding-top: 0.2rem;
                     right: 0;
@@ -99,7 +101,8 @@
         }
 
         ul {
-            width: 30%;
+            padding: 1em;
+            width: 100%;
             display: flex;
             justify-content: space-between;
             color: var(--yellow-color);
@@ -117,31 +120,23 @@
         }
 
         button {
-            margin-top: 4em;
+            margin-top: 3em;
             border: none;
             background-color: var(--yellow-color);
-            width: 30%;
+            width: 100%;
             padding: 1.3em 0;
             border-radius: 2em;
             cursor: pointer;
-            color: var(--red-color);
             font-weight: bold;
             font-size: 1.3em;
+            color: var(--red-color);
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: all 0.5s ease-in-out;
-
-            a {
-                color: var(--red-color);
-            }
-    
         }
 
         button:hover {
             background: var(--red-color);
-
-            a {
-                color: var(--yellow-color);
-            }
+            color: var(--yellow-color);
         }
     }
 }

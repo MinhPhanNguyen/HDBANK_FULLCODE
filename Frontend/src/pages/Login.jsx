@@ -3,6 +3,9 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Link, useNavigate } from 'react-router-dom';
 import { IoEye } from "react-icons/io5";
+import { IoIosEyeOff } from "react-icons/io";
+
+// import cai nay do
 import axios from 'axios';
 
 const Login = () => {
@@ -39,13 +42,13 @@ const Login = () => {
             <div className='Login'>
                 <section className='Section_1'>
                     <form onSubmit={handleLogin}>
-                        <div className='Title'>
+                        <div className='Title' data-aos="fade-down"> 
                             <h2>HD</h2>
                             <h2>Bank</h2>
                             <h2>Xin chào</h2>
                         </div>
 
-                        <div className='Username'>
+                        <div className='Username' data-aos="fade-up">
                             <input
                                 type='text'
                                 placeholder='Tài khoản'
@@ -55,7 +58,7 @@ const Login = () => {
                             />
                         </div>
 
-                        <div className='Password'>
+                        <div className='Password' data-aos="fade-up">
                             <input
                                 type={showPassword ? 'text' : 'password'}
                                 placeholder='Mật khẩu'
@@ -64,17 +67,18 @@ const Login = () => {
                                 required
                             />
                             <IoEye onClick={() => setShowPassword(!showPassword)} />
+                            <IoIosEyeOff onClick={() => setShowPassword(showPassword)} />
                         </div>
 
-                        {error && <p style={{ color: 'red' }}>{error}</p>}
+                        {error && <p data-aos="zoom-in" className='Warning'>{error}</p>}
 
-                        <button type="submit">Đăng nhập</button>
+                        <ul data-aos="fade-up">
+                            <li><Link to='/Signin'><h3>Đăng ký tài khoản</h3></Link></li>
+                            <li><Link to='/Signin'><h3>Quên mật khẩu ?</h3></Link></li>
+                        </ul>
+
+                        <button data-aos="fade-up" type="submit">Đăng nhập</button>
                     </form>
-
-                    <ul>
-                        <li><Link to='/Signin'><p>Đăng ký tài khoản</p></Link></li>
-                        <li><Link to='/Signin'><p>Quên mật khẩu ?</p></Link></li>
-                    </ul>
                 </section>
             </div>
             <Footer />
