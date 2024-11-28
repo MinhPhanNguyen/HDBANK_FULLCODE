@@ -2,6 +2,7 @@ import { CONNECT_DB, CLOSE_DB } from '~/config/mongodb'
 import { env } from '~/config/environment'
 import { APIs_V1 } from '~/routes/V1'
 import 'dotenv/config'
+import { errorHandlingMiddleware } from '~/middlewares/errorHandlingMiddleware'
 
 const express = require('express')
 const exitHook = require('async-exit-hook');
@@ -13,12 +14,13 @@ const START_SERVER = () => {
 
     app.use('/v1', APIs_V1)
 
+    app.use(errorHandlingMiddleware)
+
     app.listen(env.APP_PORT, env.APP_HOST, () => {
         console.log(`http://${ env.APP_HOST }:${ env.APP_PORT }/`)
     })
 
     exitHook(() => {
-        console.log('Disconnect')
         CLOSE_DB()
     });
 }

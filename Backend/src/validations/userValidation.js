@@ -1,4 +1,5 @@
 import {StatusCodes} from 'http-status-codes'
+import ApiError from '~/utils/ApiError';
 
 const joi = require('joi');
 
@@ -9,17 +10,14 @@ const createNew = async (req, res, next) => {
     })
 
     try {
-        console.log(req.body)
-
+        // AbortEarly false to res validation mistakes
         await correctCondition.validateAsync(req.body, {abortEarly: false})
+        next()
 
-        res.status(StatusCodes.CREATED).json({ message: 'API get list user' });
     } catch (error){
-        console.log(error)
-        res.status(StatusCodes.UNPROCESSABLE_ENTITY).json({
-            errors: new Error(error).message
-        })
-}}
+        next(new ApiError(StatusCodes.UNPROCESSABLE_ENTITY, new Error(error).message))
+    }
+}
 
 export const userValidation = {
     createNew
