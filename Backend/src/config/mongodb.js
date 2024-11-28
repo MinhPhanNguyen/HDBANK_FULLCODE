@@ -1,32 +1,17 @@
-import { env } from '~/config/environment'
+const mongoose = require("mongoose");
+const winston = require("winston");
 
-const mongoose = require('mongoose');
-const { MongoClient, ServerApiVersion } = require ('mongodb')
-
-let trelloDatabaseInstance = null
-
-//Init to connect to the server
-const mongoClientInstace = new MongoClient(env.MONGODB_URI, {
-    serverApi : {
-        version: ServerApiVersion.v1,
-        strict: true,
-        deprecationErrors: true
+const connectDB = async () => {
+    try {
+        await mongoose.connect(process.env.MONGO_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+        winston.info("MongoDB Connected"); // Ghi log khi kết nối thành công
+    } catch (err) {
+        winston.error(`Error: ${err.message}`);
+        process.exit(1); // Dừng ứng dụng nếu không kết nối được
     }
-})
+};
 
-export const CONNECT_DB = async () => {
-    process.env.MONGODB_URI
-    //Call a connection
-    await mongoClientInstace.connect();
-
-    trelloDatabaseInstance = mongoClientInstace.db(env.DATABASE_NAME);
-}
-
-export const GET_DB = () => {
-    if (!trelloDatabaseInstance) throw new Error('Connect to db, please!')
-    return trelloDatabaseInstance;
-}
-
-export const CLOSE_DB = async () => {
-    await mongoClientInstace.close();
-}
+module.exports = connectDB;
