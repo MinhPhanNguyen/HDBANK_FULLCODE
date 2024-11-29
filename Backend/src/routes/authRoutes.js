@@ -13,7 +13,7 @@ router.post("/signup", async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, salt);
         const newUser = new User({ name, email, password: hashedPassword });
         await newUser.save();
-        res.status(201).json({ message: "User registered successfully" });
+        res.status(201).json({ message: "Đăng ký thành công" });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

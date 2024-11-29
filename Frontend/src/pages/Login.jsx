@@ -19,6 +19,7 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         setLoading(true);
+        
         try {
             console.log({ email, password }); // Kiểm tra giá trị email và password
             const response = await axios.post('http://localhost:5000/api/auth/login', {
@@ -66,11 +67,18 @@ const Login = () => {
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
                             />
-                            <IoEye onClick={() => setShowPassword(!showPassword)} />
-                            <IoIosEyeOff onClick={() => setShowPassword(showPassword)} />
+                            {
+                                showPassword ? ( <IoIosEyeOff onClick={() => setShowPassword(false)} /> )
+                                : ( <IoEye onClick={() => setShowPassword(true)} /> )
+                            }      
                         </div>
 
-                        {error && <p data-aos="zoom-in" className='Warning'>{error}</p>}
+                        {error  && <p data-aos="zoom-in" style={{ 
+                            color: '#ba1128',
+                            padding: '0.5em 1em 0 1em',
+                            backgroundColor: 'transparent',
+                            borderRadius: '0.2em'
+                        }}>{error}</p>}
 
                         <ul data-aos="fade-up">
                             <li><Link to='/Signin'><h3>Đăng ký tài khoản</h3></Link></li>

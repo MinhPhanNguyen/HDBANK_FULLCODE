@@ -1,25 +1,40 @@
-const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const bcrypt = require('bcryptjs');
 const User = require("../models/userModel"); // Import userModel
+const { body, validationResult } = require("express-validator");
 
-// Đăng ký tài khoản mới
+// Middleware validate
+const validateRegister = [
+    body("email").isEmail().withMessage("Email không hợp lệ!"),
+    body("password")
+        .isLength({ min: 8, max: 30 })
+        .withMessage("Password phải từ 8-30 ký tự!")
+];
+
+const validateLogin = [
+    body("email").isEmail().withMessage("Email không hợp lệ!"),
+    body("password").notEmpty().withMessage("Password không được để trống!"),
+];
+
 const registerUser = async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
     const { email, password } = req.body;
 
     try {
-        // Check if email already exists
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ message: "Email đã được sử dụng!" });
         }
 
-        // Create a new user (password will be hashed by the pre('save') middleware)
         const newUser = new User({ email, password });
         await newUser.save();
-
         res.status(201).json({ message: "Đăng ký thành công!", user: newUser });
     } catch (error) {
-        res.status(500).json({ message: "Có lỗi xảy ra!", error: error.message });
+        res.status(500).json({ message: "Mật khẩu từ 8 - 30 ký tự", error: error.message });
     }
 };
 
@@ -46,8 +61,8 @@ const loginUser = async (req, res) => {
 
         res.status(200).json({ message: 'Đăng nhập thành công!', token });
     } catch (error) {
-        res.status(500).json({ message: 'Có lỗi xảy ra!', error: error.message });
+        res.status(500).json({ message: 'Đăng nhập thất bại. Vui lòng kiểm tra tài khoản hoặc mật khẩu', error: error.message });
     }
 };
 
-module.exports = { registerUser, loginUser };
+module.exports = { registerUser, loginUser, validateRegister, validateLogin };

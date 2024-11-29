@@ -1,9 +1,7 @@
 import React, {useState} from 'react'
 import HeaderPage from '../components/HeaderPage'
-import Banner from '../components/Banner'
 import FooterPage from '../components/FooterPage'
-import card_img_1 from '../assets/images/card-img-1.png'
-import card_img_2 from '../assets/images/card-img-2.png'
+import Banner from '../components/Banner'
 import card_img_3 from '../assets/images/card-img-3.png'
 import card_img_4 from '../assets/images/card-img-4.png'
 import { FaChevronLeft } from "react-icons/fa6";
@@ -75,7 +73,8 @@ const CardRegistration = () => {
                     </ul>
                 </div>
             </div>
-        </div>
+            <FooterPage/>
+        </div> 
     )
 }
 

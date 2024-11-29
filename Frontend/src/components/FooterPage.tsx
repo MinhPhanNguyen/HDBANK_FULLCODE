@@ -3,7 +3,7 @@ import kiemduyet from '../assets/images/logosalenoti.png'
 import facebook from '../assets/images/fbsquare.png'
 import youtube from '../assets/images/ytbsquare.png'
 
-const FooterPage = () => {
+const footerPage = () => {
     return (
         <div className='FooterPage'>
             <div className='TotalFooter'>
@@ -48,4 +48,4 @@ const FooterPage = () => {
     )
 }
 
-export default FooterPage;
+export default footerPage;

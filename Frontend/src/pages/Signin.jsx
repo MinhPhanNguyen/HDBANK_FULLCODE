@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Link, useNavigate } from 'react-router-dom';
 import { IoEye } from "react-icons/io5";
+import { IoIosEyeOff } from "react-icons/io";
 import axios from 'axios';
 
 const Signin = () => {
@@ -13,6 +14,10 @@ const Signin = () => {
     const [success, setSuccess] = useState('');
     const navigate = useNavigate(); // Điều hướng sau khi đăng ký
     const [loading, setLoading] = useState(false);
+
+    const closedFrame = () => {
+        document.querySelector('.Frame').style.top = '-100%';
+    }
 
     const handleSignup = async (e) => {
         e.preventDefault();
@@ -26,7 +31,7 @@ const Signin = () => {
             setTimeout(() => navigate('/'), 2000);
         } catch (err) {
             console.error(err); // Log lỗi để kiểm tra chi tiết
-            setError(err.response?.data?.message || 'Đã xảy ra lỗi.');
+            setError(err.response?.data?.message || 'Mật khẩu từ 8 - 30 kí tự');
         } finally {
             setLoading(false);
         }
@@ -63,11 +68,26 @@ const Signin = () => {
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
                             />
-                            <IoEye onClick={() => setShowPassword(!showPassword)} />
+                            
+                            {
+                                showPassword ? ( <IoIosEyeOff onClick={() => setShowPassword(false)} /> )
+                                : ( <IoEye onClick={() => setShowPassword(true)} /> )
+                            }                        
                         </div>
 
-                        {error  && <p data-aos="zoom-in" style={{ color: 'red' }}>{error}</p>}
-                        {success && <p data-aos="zoom-in" style={{ color: 'green' }}>{success}</p>}
+                        {error  && <p data-aos="zoom-in" style={{ 
+                            color: '#ba1128',
+                            padding: '0.5em 1em 0 1em',
+                            backgroundColor: 'transparent',
+                            borderRadius: '0.2em'
+                        }}>{error}</p>}
+
+                        {success && <p data-aos="zoom-in"style={{ 
+                                color: 'rgb(0, 162, 0)',
+                                padding: '0.5em 1em 0 1em',
+                                backgroundColor: 'transparent',
+                                borderRadius: '0.2em'
+                        }}>{success}</p>}
 
                         <ul data-aos="fade-up">
                             <li><Link to='/'><h3>Đăng nhập ?</h3></Link></li>

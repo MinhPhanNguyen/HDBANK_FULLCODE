@@ -2,7 +2,11 @@
     background-color: var(--bg-footer-color);
     width: 100%;
     padding: 1em 0;
-    color: #464646;
+    color: var(--txt-color);
+
+    a {
+        color: var(--txt-color);
+    }
 
     img {
         height: 3vw;
@@ -28,7 +32,6 @@
         cursor: pointer;
         transition: all 0.3s ease-in-out;
         width: 22vw;
-        color: #464646;
         margin: 1em 0;
     }
 

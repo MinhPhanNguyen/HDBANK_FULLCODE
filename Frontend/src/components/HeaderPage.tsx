@@ -2,8 +2,6 @@ import React from 'react';
 import Logo from "../assets/images/logo.png";
 import { FaRegCreditCard } from "react-icons/fa";
 import { HiOutlineTemplate } from "react-icons/hi";
-import { FaCaretDown } from "react-icons/fa";
-import { IoSunny } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
 
 const HeaderPage = () => {

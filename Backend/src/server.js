@@ -29,7 +29,7 @@ app.use(cors); // Để gọi API từ frontend
 app.use(express.json()); // Xử lý JSON payload
 app.use(express.urlencoded({ extended: true })); // Xử lý URL-encoded payload
 app.post('/api/auth/login', loginUser);  
-app.post('/api/auth/signup', registerUser);  
+app.post('/api/auth/signup', registerUser);
 
 // Routes
 app.use("/api/auth", authRoutes);

@@ -14,11 +14,9 @@ const UserSchema = new mongoose.Schema(
         },
         password: { 
             type: String, 
-            required: true, 
-            match: [
-                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,30}$/,
-                "Password phải từ 8-30 ký tự, bao gồm chữ thường, chữ hoa, số và ký tự đặc biệt"
-            ],
+            required: true,
+            minlength: 8, 
+            maxlength: 30, 
         },
     },
 );
